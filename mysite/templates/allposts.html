@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<h1>{{ message }}</h1>
+{% endfor %}
+{% endif %}
+<div class="container">
+    <div class="row">
+        {% for post in posts %}
+        {% if forloop.counter0|divisibleby:4 and not forloop.first %}<div class="w-100"></div>{% endif %}
+        <div class="card mb-3 mr-3" style="width: 16rem;">
+            <div class="card-body">
+                <a href="{% url 'clickPost' post.id %}">
+                    <h3 class="card-title">Title: {{ post.post_title }}</h3>
+                </a>
+                <p>Body: {{ post.post_body }}</p>
+                <h4>Job: {{ post.category.category }}</h4>
+                <h4>Author: {{ post.user }}</h4>
+                <!-- <h4>Category: {{ post.category }}</h4> -->
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<h2>Registration</h2>
+<form method="POST">
+    {% csrf_token %}
+          {{ form.username|as_crispy_field}}
+          {{ form.email|as_crispy_field}}
+          {{ form.password1|as_crispy_field }}
+          {{ form.password2|as_crispy_field }}
+      
+
+    <button style="padding: 10px;font-size: 20px;background-color: green;color: white;" type="submit
+    ">Signup</button>
+</form>
+<style>
+    form input{
+        padding: 10px;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    form label{
+        font-size: 20px;
+    }
+</style>
+{% endblock %}

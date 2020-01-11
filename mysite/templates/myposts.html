@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for post in posts %}
+        {% if forloop.counter0|divisibleby:4 and not forloop.first %}<div class="w-100"></div>{% endif %}
+        <div class="col">
+            <h3>Title: {{ post.post_title }}</h3>
+            <p>Body: {{ post.post_body }}</p>
+            <a href="{%url 'editpost' post.id %}">Edit post</a>
+            <a href="{%url 'deletepost' post.id %}">Delete post</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
