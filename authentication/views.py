@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
-from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .forms import RegisterForm, PasswordChange
+from .forms import RegisterForm
 from django import forms
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
@@ -53,18 +53,3 @@ def logout(request):
     auth_logout(request)
     return redirect('post')
 
-
-def change_passwd(request):
-    if request.method == 'POST':
-        form = PasswordChange(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            messages.success(
-                request, 'Your password was successfully updated!')
-            return redirect('home')
-        else:
-            messages.error(request, 'Please correct the error below.')
-            return redirect('change_passwd')
-    else:
-        form = PasswordChange(request.user)
-        return render(request, 'change_passwd.html', {'form': form})

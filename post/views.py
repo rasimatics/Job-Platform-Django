@@ -16,11 +16,10 @@ def new_post(request):
         if request.POST['title'] != '' and request.POST['body'] != '':
             new_post = Post(
                 post_title=request.POST['title'], post_body=request.POST['body'],
-                user=request.user, category = Category.objects.get(id=request.POST['category']))
+                user=request.user, category = Category.objects.get(id=request.POST['category']), price=request.POST['price'])
             new_post.save()
-            messages.success(request, "SUCCESFULLY added")
             posts = Post.objects.all()
-            return render(request, "allposts.html", {"posts": posts})
+            return redirect('post')
     else:
         categories = Category.objects.all()
         return render(request, "new_post.html", {"category": categories})
@@ -60,11 +59,3 @@ def clickOnPost(request, id):
     return render(request, "clickPost.html", {'post': selected_post})
 
 
-# Categorie
-# Design of website
-#Likes or star
-# Working hours and money
-# Workers page(Find worker and information about worker and also CV)
-# Apply for job and chat with Person
-# Search for categorie
-#Pagination  : MyModel.objects.all()[offset:limit]

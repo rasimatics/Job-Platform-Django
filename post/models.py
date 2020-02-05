@@ -7,8 +7,11 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    post_title = models.TextField(max_length=100)
-    post_body = models.TextField()
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     category = models.ForeignKey(Category, default=1, on_delete=models.CASCADE)
+    post_title = models.TextField(max_length=100)
+    post_body = models.TextField()
+    price = models.IntegerField()
+
+
     

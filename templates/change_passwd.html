@@ -1,8 +1,9 @@
 {% extends 'index.html' %}
 {% block content %}
 <form method="POST">
+    <h1 style="color: red;">Password gives extra text it must be edited</h1>
     {% csrf_token %}
-    {{ form }}
+    {{ form  }}
     <button type="submit">Change Password</button>
 </form>
 {% endblock %}

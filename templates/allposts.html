@@ -1,10 +1,10 @@
 {% extends 'index.html' %}
 {% block content %}
-{% if messages %}
+<!-- {% if messages %}
 {% for message in messages %}
 <h1>{{ message }}</h1>
 {% endfor %}
-{% endif %}
+{% endif %} -->
 <div class="container">
     <div class="row">
         {% for post in posts %}
@@ -17,6 +17,7 @@
                 <p>Body: {{ post.post_body }}</p>
                 <h4>Job: {{ post.category.category }}</h4>
                 <h4>Author: {{ post.user }}</h4>
+                <h4>Price: {{ post.price }}</h4>
                 <!-- <h4>Category: {{ post.category }}</h4> -->
             </div>
         </div>
