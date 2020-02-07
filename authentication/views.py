@@ -1,18 +1,12 @@
 from django.shortcuts import render, redirect, HttpResponse
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .forms import RegisterForm
-from django import forms
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.contrib import messages
 from post.models import Post
-import logging
-
 
 posts = Post.objects.all()
 count = User.objects.count()
 message = False
-
 
 def index(request):
     posts = Post.objects.all()
@@ -38,8 +32,7 @@ def login(request):
         if user:
             if user.is_active:
                 auth_login(request, user)
-                posts = Post.objects.all()
-                return render(request, 'allposts.html', {'posts': posts})
+                return redirect('/')
             else:
                 return HttpResponse("Your account was inactive.")
         else:
@@ -49,7 +42,6 @@ def login(request):
 
 
 def logout(request):
-    count = User.objects.count()
     auth_logout(request)
-    return redirect('post')
+    return redirect('/')
 

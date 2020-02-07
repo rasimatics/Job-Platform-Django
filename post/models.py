@@ -12,6 +12,7 @@ class Post(models.Model):
     post_title = models.TextField(max_length=100)
     post_body = models.TextField()
     price = models.IntegerField()
+    date = models.DateField(auto_now=True)
 
-
-    
+    class Meta:
+        ordering = ['-pk']
