@@ -32,7 +32,8 @@ def login(request):
         if user:
             if user.is_active:
                 auth_login(request, user)
-                return redirect('/')
+                coming_page=request.GET['next']
+                return redirect(coming_page)
             else:
                 return HttpResponse("Your account was inactive.")
         else:
