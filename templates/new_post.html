@@ -1,51 +1,51 @@
 {% extends 'index.html' %}
 {% block content %}
-<form method="POST">
-    {% csrf_token %}
-    Title:<input placeholder="Title..." type="text" id="title" name="title">
-    Body:<textarea placeholder="Description..." name="body"></textarea>
-    Category:
-    <select name="category">
-        {% for cat in category %}
-        <option value={{ cat.id }}>{{ cat.category }}</option>
-        {% endfor %}
-    </select>
-    Price:<input  type="number" id="price" name="price">
-    <input type="submit" id="submit" value="Submit">
-    <style>
-        form {
-            display: flex;
-            flex-direction: column;
-        }
+    <form method="POST">
+        {% csrf_token %}
+        Title:<input placeholder="Title..." type="text" id="title" name="title">
+        Body:<textarea placeholder="Description..." name="body"></textarea>
+        Category:
+        <select name="category">
+            {% for cat in category %}
+                <option value={{ cat.id }}>{{ cat.category }}</option>
+            {% endfor %}
+        </select>
+        Price:<input type="number" id="price" name="price">
+        <input type="submit" id="submit" value="Submit">
+        <style>
+            form {
+                display: flex;
+                flex-direction: column;
+            }
 
-        #title {
-            width: 20%;
-            padding: 5px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
+            #title {
+                width: 20%;
+                padding: 5px;
+                font-size: 16px;
+                box-sizing: border-box;
+            }
 
-        textarea {
-            width: 20%;
-            height: 80px;
-            padding: 5px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
+            textarea {
+                width: 20%;
+                height: 80px;
+                padding: 5px;
+                font-size: 16px;
+                box-sizing: border-box;
+            }
 
-        input[type=submit] {
-            width: 20%;
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+            input[type=submit] {
+                width: 20%;
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
 
-        input[type=submit]:hover {
-            background-color: #45a049;
-        }
-    </style>
-    {% endblock %}
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+        </style>
+{% endblock %}

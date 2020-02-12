@@ -1,7 +1,5 @@
 from django.shortcuts import render, redirect
 from .models import Post, Category
-from django.http import HttpResponseRedirect
-from django.contrib import messages
 
 posts = Post.objects.all()
 

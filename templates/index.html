@@ -15,11 +15,11 @@
         <li class="nav-item">
             <a class="nav-link active" href="{% url 'change-password' %}">Change password</a>
         </li>
-        {% block postmethods %}
-        {% endblock %}
         <li class="nav-item">
             <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
         </li>
+        {% block postmethods %}
+        {% endblock %}
     {% else %}
         <li class="nav-item">
             <a class="nav-link active" href="{% url 'signup' %}">Signup</a>

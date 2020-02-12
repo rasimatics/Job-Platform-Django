@@ -1,11 +1,16 @@
-{%extends 'index.html'%}
+{% extends 'index.html' %}
 <html>
 <head>
     <title>Freelancers</title>
 </head>
 <body>
-    {% block content %}
-        <h1>Freelancers</h1>
-	{% endblock %}
+{% block postmethods %}
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'add' %}">Add Freelance Profile</a>
+    </li>
+{% endblock %}
+{% block content %}
+    <h1>Freelancers</h1>
+{% endblock %}
 </body>
 </html>
