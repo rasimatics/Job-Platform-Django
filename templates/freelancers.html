@@ -6,11 +6,25 @@
 <body>
 {% block postmethods %}
     <li class="nav-item">
+    	{% if profile_exist == False %}
         <a class="nav-link active" href="{% url 'add' %}">Add Freelance Profile</a>
+        {% else %}
+        <a class="nav-link active" href="{% url 'edit' %}">Edit Freelance Profile</a>
+        {% endif %}
     </li>
 {% endblock %}
 {% block content %}
     <h1>Freelancers</h1>
+    <ul>
+    	{% for freelancer in freelancers %}
+    	<li>
+    		<h4>{{freelancer.name }}<span> </span>{{freelancer.surname}}</h4>
+    		<p>{{freelancer.description}}</p>
+    		<p>{{freelancer.skills}}</p>
+    		<p>{{freelancer.contact}}</p>
+    	</li>
+    	{% endfor %}
+    </ul>
 {% endblock %}
 </body>
 </html>

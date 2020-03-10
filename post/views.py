@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Post, Category
+from django.contrib.auth.decorators import login_required
 
 posts = Post.objects.all()
 
@@ -9,6 +10,7 @@ def post(request):
     return render(request, "allposts.html", {"posts": posts})
 
 
+@login_required(login_url='/login/')
 def new_post(request):
     if request.method == 'POST':
         if request.POST['title'] != '' and request.POST['body'] != '':
@@ -22,13 +24,13 @@ def new_post(request):
         categories = Category.objects.all()
         return render(request, "new_post.html", {"category": categories})
 
-
+@login_required(login_url='/login/')
 def myposts(request):
     id = request.user.id
     posts = Post.objects.filter(user_id=id)
     return render(request, "myposts.html", {"posts": posts})
 
-
+@login_required(login_url='/login/')
 def editpost(request, id):
     if request.method == 'POST':
         if request.POST['title'] != '' and request.POST['body'] != '':
@@ -43,7 +45,7 @@ def editpost(request, id):
         post = Post.objects.get(id=id)
         return render(request, "editpost.html", {'post': post})
 
-
+@login_required(login_url='/login/')
 def deletepost(request, id):
     post = Post.objects.get(id=id)
     post.delete()

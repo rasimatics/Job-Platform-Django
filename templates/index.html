@@ -18,8 +18,6 @@
         <li class="nav-item">
             <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
         </li>
-        {% block postmethods %}
-        {% endblock %}
     {% else %}
         <li class="nav-item">
             <a class="nav-link active" href="{% url 'signup' %}">Signup</a>
@@ -28,6 +26,8 @@
             <a class="nav-link active" href="{% url 'login' %}?next={{request.path}}">Login</a>
         </li>
     {% endif %}
+    {% block postmethods %}
+        {% endblock %}
 </ul>
 <hr>
 {% block content %}

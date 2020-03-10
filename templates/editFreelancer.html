@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>Edit Freelancer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+<form class="container" method="POST">
+    {% csrf_token %}
+    <h3>Edit Freelancer Profile</h3>
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" required name="name" value="{{freelancer.name}}">
+    </div>
+    <div class="form-group">
+        <label>Surname</label>
+        <input type="text" class="form-control" required name="surname" value="{{freelancer.surname}}">
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <input type="text" class="form-control" required name="description" value="{{freelancer.description}}">
+    </div>
+    <div class="form-group">
+        <label>Skills</label>
+        <input type="text" class="form-control" required name="skills" value="{{freelancer.skills}}">
+    </div>
+    <div class="form-group">
+        <label>Contact Email or Number</label>
+        <input type="text" class="form-control" required name="contact" value="{{freelancer.contact}}">
+    </div>
+    <a href="{%url 'delete' %}" class="btn btn-danger">Delete</a>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
+</html>
