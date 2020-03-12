@@ -7,7 +7,7 @@ posts = Post.objects.all()
 
 def post(request):
     posts = Post.objects.all()
-    return render(request, "allposts.html", {"posts": posts})
+    return render(request, "posts/allposts.html", {"posts": posts})
 
 
 @login_required(login_url='/login/')
@@ -22,13 +22,13 @@ def new_post(request):
             return redirect('post')
     else:
         categories = Category.objects.all()
-        return render(request, "new_post.html", {"category": categories})
+        return render(request, "posts/new_post.html", {"category": categories})
 
 @login_required(login_url='/login/')
 def myposts(request):
     id = request.user.id
     posts = Post.objects.filter(user_id=id)
-    return render(request, "myposts.html", {"posts": posts})
+    return render(request, "posts/myposts.html", {"posts": posts})
 
 @login_required(login_url='/login/')
 def editpost(request, id):
@@ -40,10 +40,10 @@ def editpost(request, id):
             edit_post.save()
             user_id = request.user.id
             posts = Post.objects.filter(user_id=user_id)
-            return render(request, "myposts.html", {"posts": posts})
+            return render(request, "posts/myposts.html", {"posts": posts})
     else:
         post = Post.objects.get(id=id)
-        return render(request, "editpost.html", {'post': post})
+        return render(request, "posts/editpost.html", {'post': post})
 
 @login_required(login_url='/login/')
 def deletepost(request, id):
@@ -51,11 +51,11 @@ def deletepost(request, id):
     post.delete()
     user_id = request.user.id
     posts = Post.objects.filter(user_id=user_id)
-    return render(request, "myposts.html", {"posts": posts})
+    return render(request, "posts/myposts.html", {"posts": posts})
 
 
 def clickOnPost(request, id):
     selected_post = Post.objects.get(id=id)
-    return render(request, "clickPost.html", {'post': selected_post})
+    return render(request, "posts/clickPost.html", {'post': selected_post})
 
 

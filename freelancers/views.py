@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .models import NewFreelancer
 from django.contrib.auth.decorators import login_required
 
-
 def freelancers(request):
     if request.user.is_authenticated:
         try:
@@ -12,18 +11,21 @@ def freelancers(request):
     else:
         profile_exist = False
     freelancers = NewFreelancer.objects.all()
-    return render(request, "freelancers.html",{"freelancers":freelancers,"profile_exist":profile_exist})
+    return render(request, "freelancers/freelancers.html", {"freelancers": freelancers, "profile_exist": profile_exist})
+
+
 
 @login_required(login_url='/login/')
 def addFreelancer(request):
     if request.method == 'POST':
         freelancer = NewFreelancer(name=request.POST['name'], surname=request.POST['surname'],
                                    description=request.POST['description'], skills=request.POST['skills'],
-                                   contact=request.POST['contact'],user=request.user)
+                                   contact=request.POST['contact'], user=request.user)
         freelancer.save()
         return redirect('freelancers')
     else:
-        return render(request, "addFreelancer.html")
+        return render(request, "freelancers/addFreelancer.html")
+
 
 @login_required(login_url='/login/')
 def editFreelancer(request):
@@ -37,10 +39,11 @@ def editFreelancer(request):
         freelancer.save()
         return redirect('freelancers')
     else:
-        return render(request,"editFreelancer.html",{"freelancer":freelancer})
+        return render(request, "freelancers/editFreelancer.html", {"freelancer": freelancer})
+
 
 @login_required(login_url='/login/')
 def deleteFreelancer(request):
-    freelancer = NewFreelancer.objects.get(user = request.user)
+    freelancer = NewFreelancer.objects.get(user=request.user)
     freelancer.delete()
     return redirect('freelancers')
