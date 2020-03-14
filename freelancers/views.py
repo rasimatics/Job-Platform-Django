@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import NewFreelancer
 from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/login/')
 def freelancers(request):
     if request.user.is_authenticated:
         try:
@@ -10,9 +11,8 @@ def freelancers(request):
             profile_exist = False
     else:
         profile_exist = False
-    freelancers = NewFreelancer.objects.all()
-    return render(request, "freelancers/freelancers.html", {"freelancers": freelancers, "profile_exist": profile_exist})
-
+    all_freelancers = NewFreelancer.objects.all()
+    return render(request, "freelancers/freelancers.html", {"freelancers": all_freelancers, "profile_exist": profile_exist})
 
 
 @login_required(login_url='/login/')
@@ -47,3 +47,10 @@ def deleteFreelancer(request):
     freelancer = NewFreelancer.objects.get(user=request.user)
     freelancer.delete()
     return redirect('freelancers')
+
+@login_required(login_url='/login/')
+def freelancerDetail(request,id):
+    freelancer = NewFreelancer.objects.get(id=id)
+    context = {"freelancer":freelancer}
+    return render(request,"freelancers/freelancerDetail.html",context)
+

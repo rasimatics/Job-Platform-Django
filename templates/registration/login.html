@@ -5,6 +5,7 @@
     {% csrf_token %}
     {{ form }}
     <input type="submit"  value="Login">
-    <a href={% url 'password_reset' %}>Forget Password?</a>
+    <br><a href={% url 'password_reset' %}>Forget Password?</a>
+    <br><a href={% url 'signup' %}>You don't have an account?</a>
 </form>
 {% endblock %}

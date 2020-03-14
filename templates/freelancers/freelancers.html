@@ -18,10 +18,10 @@
     <ul>
     	{% for freelancer in freelancers %}
     	<li>
-    		<h4>{{freelancer.name }}<span> </span>{{freelancer.surname}}</h4>
-    		<p>{{freelancer.description}}</p>
-    		<p>{{freelancer.skills}}</p>
-    		<p>{{freelancer.contact}}</p>
+    		<a href={% url 'detail' freelancer.id %}><h4>{{freelancer.name }}<span> </span>{{freelancer.surname}}</h4></a>
+    		<p>{{freelancer.description |truncatechars:70}}</p>
+    		<p>{{freelancer.skills |truncatechars:40}}</p>
+    		<p>{{freelancer.contact |truncatechars:40}}</p>
     	</li>
     	{% endfor %}
     </ul>
