@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+    <a class="btn btn-danger" href={% url 'post' %}>Back</a>
     <form method="POST">
         {% csrf_token %}
         Title:<input placeholder="Title..." type="text" id="title" name="title">

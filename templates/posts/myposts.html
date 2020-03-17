@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
+<a class="btn btn-danger" href={% url 'post' %}>Back</a>
     <div class="row">
         {% for post in posts %}
         {% if forloop.counter0|divisibleby:4 and not forloop.first %}<div class="w-100"></div>{% endif %}

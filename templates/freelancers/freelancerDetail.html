@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-   <h4>{{freelancer.name }}<span> </span>{{freelancer.surname}}</h4>
-    		<p>{{freelancer.description}}</p>
-    		<p>{{freelancer.skills}}</p>
-    		<p>{{freelancer.contact}}</p>
+    <a class="btn btn-danger" href={%url 'freelancers'%}>Back</a>
+    <h4>{{freelancer.name }}<span> </span>{{freelancer.surname}}</h4>
+    <p>{{freelancer.description}}</p>
+    <p>{{freelancer.skills}}</p>
+    <p>{{freelancer.contact}}</p>
 {% endblock %}

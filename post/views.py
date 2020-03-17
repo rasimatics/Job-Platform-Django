@@ -56,6 +56,6 @@ def deletepost(request, id):
 @login_required(login_url='/login/')
 def clickOnPost(request, id):
     selected_post = Post.objects.get(id=id)
-    return render(request, "posts/clickPost.html", {'post': selected_post})
+    return render(request, "posts/postDetail.html", {'post': selected_post})
 
 

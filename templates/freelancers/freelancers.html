@@ -14,6 +14,7 @@
     </li>
 {% endblock %}
 {% block content %}
+    <a class="btn btn-danger" href={% url 'intro' %}>Back</a>
     <h1>Freelancers</h1>
     <ul>
     	{% for freelancer in freelancers %}

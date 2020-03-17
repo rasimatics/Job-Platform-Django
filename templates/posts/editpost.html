@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-
-
-<form method="POST">
-    {% csrf_token %}
-    Title:<textarea  name="title">{{ post.post_title }}</textarea>
-    Body:<textarea  name="body">{{ post.post_body }}</textarea>
-    <input type="submit" id="submit" value="Save">
-
+    <a class="btn btn-danger" href={% url 'post' %}>Back</a>
+    <form method="POST">
+        {% csrf_token %}
+        Title:<textarea  name="title">{{ post.post_title }}</textarea>
+        Body:<textarea  name="body">{{ post.post_body }}</textarea>
+        <input type="submit" id="submit" value="Save">
+    </form>
 <style>
     form{
         display: flex;
@@ -34,5 +33,4 @@
          background-color: #45a049;
     }
 </style>
-
 {% endblock %}
