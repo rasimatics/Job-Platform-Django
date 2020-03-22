@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'post',
     'freelancers',
-    'introduction'
+    'introduction',
+    'jobs'
 ]
 
 MIDDLEWARE = [

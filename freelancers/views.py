@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .models import NewFreelancer
 from django.contrib.auth.decorators import login_required
 
-@login_required(login_url='/login/')
 def freelancers(request):
     if request.user.is_authenticated:
         try:
@@ -48,7 +47,7 @@ def deleteFreelancer(request):
     freelancer.delete()
     return redirect('freelancers')
 
-@login_required(login_url='/login/')
+
 def freelancerDetail(request,id):
     freelancer = NewFreelancer.objects.get(id=id)
     context = {"freelancer":freelancer}

@@ -7,6 +7,5 @@ urlpatterns = [
     path('', include('post.urls')),
     path('', include('freelancers.urls')),
     path('', include('introduction.urls')),
-
-
+    path('', include('jobs.urls')),
 ]

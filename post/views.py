@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 
 posts = Post.objects.all()
 
-@login_required(login_url='/login/')
 def post(request):
     posts = Post.objects.all()
     return render(request, "posts/allposts.html", {"posts": posts})
@@ -53,7 +52,6 @@ def deletepost(request, id):
     posts = Post.objects.filter(user_id=user_id)
     return render(request, "posts/myposts.html", {"posts": posts})
 
-@login_required(login_url='/login/')
 def clickOnPost(request, id):
     selected_post = Post.objects.get(id=id)
     return render(request, "posts/postDetail.html", {'post': selected_post})

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>Job Detail</h4><hr>
+    <h3>{{job.job_name}}</h3>
+    <p>{{job.description}}</p>
+    <h5>{{job.company_name}}</h5>
+    <h5>{{job.email}}</h5>
+    <h5>{{job.number}}</h5>
+    <h5>{{job.finished_date}}</h5>
+{% endblock %}
