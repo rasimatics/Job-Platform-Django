@@ -1,18 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>All jobs</h1>
-    <a href={% url 'jobcreate' %}>Add new job</a>
-    <a href={% url 'myjobs' %}>My Jobs</a>
-    <hr>
+    <h1>My jobs</h1>
     <ul>
     {% for job in jobs %}
         <li>
-            <a href={% url 'jobdetail' job.id%}><h3>{{job.job_name}}</h3></a>
+            <h3>{{job.job_name}}</h3>
             <p>{{job.description|truncatechars:60}}</p>
             <h5>{{job.company_name}}</h5>
             <h5>{{job.email}}</h5>
             <h5>{{job.number}}</h5>
             <h5>{{job.finished_date}}</h5>
+            <a href={% url 'jobupdate' job.id %}>Edit</a>
+            <a href={% url 'jobdelete' job.id %}>Delete</a>
         </li>
     {% endfor %}
     </ul>

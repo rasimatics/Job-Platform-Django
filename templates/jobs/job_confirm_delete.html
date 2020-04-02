@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<h4>Job Update</h4><hr>
+<h4>Delete</h4><hr>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p}}
-    <input type="submit" value="Update"/>
+        <h1>Do you want to delete?</h1>
+        <input type="submit" value="Delete">
     </form>
 {% endblock %}
