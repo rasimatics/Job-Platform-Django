@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Post, Category
 from django.contrib.auth.decorators import login_required
@@ -17,7 +18,6 @@ def new_post(request):
                 post_title=request.POST['title'], post_body=request.POST['body'],
                 user=request.user, category = Category.objects.get(id=request.POST['category']), price=request.POST['price'])
             new_post.save()
-            posts = Post.objects.all()
             return redirect('post')
     else:
         categories = Category.objects.all()
@@ -42,15 +42,21 @@ def editpost(request, id):
             return render(request, "posts/myposts.html", {"posts": posts})
     else:
         post = Post.objects.get(id=id)
-        return render(request, "posts/editpost.html", {'post': post})
+        if(post.user == request.user):
+            return render(request, "posts/editpost.html", {'post': post})
+        else:
+            return HttpResponse("<h2>You cannot edit this post!")
 
 @login_required(login_url='/login/')
 def deletepost(request, id):
     post = Post.objects.get(id=id)
-    post.delete()
-    user_id = request.user.id
-    posts = Post.objects.filter(user_id=user_id)
-    return render(request, "posts/myposts.html", {"posts": posts})
+    if(post.user == request.user):
+        post.delete()
+        user_id = request.user.id
+        posts = Post.objects.filter(user_id=user_id)
+        return render(request, "posts/myposts.html", {"posts": posts})
+    else:
+        return HttpResponse("<h2>You can't delete this post")
 
 def clickOnPost(request, id):
     selected_post = Post.objects.get(id=id)

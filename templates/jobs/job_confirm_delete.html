@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-<h4>Delete</h4><hr>
-    <form method="post">
-        {% csrf_token %}
-        <h1>Do you want to delete?</h1>
-        <input type="submit" value="Delete">
-    </form>
+
+     {% if job == None %}
+        <h1>Page Not Found</h1>
+    {% else %}
+         <h4>Delete</h4><hr>
+        <form method="post">
+            {% csrf_token %}
+            <h1>Do you want to delete?</h1>
+            <input type="submit" value="Delete">
+        </form>
+    {% endif %}
 {% endblock %}

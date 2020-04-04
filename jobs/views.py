@@ -34,11 +34,13 @@ class JobUpdate(UpdateView):
     model = Job
     fields = "__all__"
 
+
     def get_object(self):
-        id = self.kwargs.get("pk")
-        job = get_object_or_404(Job,id=id)
-        job.title = "Update"
-        return  job
+        job = get_object_or_404(Job, id=self.kwargs.get('pk'))
+        if(job.user == self.request.user):
+            return job
+        else:
+            return None
 
     def form_valid(self, form):
         form.save()
@@ -50,8 +52,11 @@ class JobDelete(DeleteView):
     success_url = reverse_lazy('alljobs')
 
     def get_object(self):
-        id = self.kwargs.get("pk")
-        return  get_object_or_404(Job,id=id)
+        job = get_object_or_404(Job, id=self.kwargs.get('pk'))
+        if (job.user == self.request.user):
+            return job
+        else:
+            return None
 
 class MyJobs(ListView):
     model = Job
