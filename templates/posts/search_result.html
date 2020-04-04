@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Search Results</h1>
+
+<ul>
+  {% for post in object_list %}
+     <div class="card mb-3 mr-3" style="width: 16rem;">
+                    <div class="card-body">
+                        <a href="{% url 'clickPost' post.slug %}">
+                            <h3 class="card-title">Title: {{ post.post_title }}</h3>
+                        </a>
+                        <p>Body: {{ post.post_body |truncatechars:90}}</p>
+                        <h4>Job: {{ post.category.category }}</h4>
+                        <h4>Author: {{ post.user }}</h4>
+                        <h4>Price: {{ post.price }}</h4>
+                        <h4>Data: {{ post.date }}</h4>
+                    </div>
+                </div>
+  {% endfor %}
+</ul>
+{% endblock %}

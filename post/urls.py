@@ -8,4 +8,5 @@ urlpatterns = [
     path('editpost/<slug:slug>/',views.editpost,name="editpost"),
     path('delete/<slug:slug>/',views.deletepost,name="deletepost"),
     path('post/<slug:slug>/',views.clickOnPost,name='clickPost'),
+    path('search/',views.SearchResultsView.as_view(),name="search")
 ]

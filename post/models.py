@@ -5,8 +5,12 @@ from django.template.defaultfilters import slugify
 class Category(models.Model):
     category = models.TextField(max_length=40)
 
+    class Meta:
+        verbose_name_plural="Categories"
+
     def __str__(self):
         return  self.category
+
 
 
 class Post(models.Model):
