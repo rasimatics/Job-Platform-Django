@@ -10,8 +10,8 @@
             <h5>{{job.email}}</h5>
             <h5>{{job.number}}</h5>
             <h5>{{job.finished_date}}</h5>
-            <a href={% url 'jobupdate' job.id %}>Edit</a>
-            <a href={% url 'jobdelete' job.id %}>Delete</a>
+            <a href={% url 'jobupdate' job.slug %}>Edit</a>
+            <a href={% url 'jobdelete' job.slug %}>Delete</a>
         </li>
     {% endfor %}
     </ul>

@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+
+from .forms import CreateAndUpdateJobForm
 from .models import Job
 
 class Jobs(ListView):
@@ -12,7 +14,7 @@ class Jobs(ListView):
 class JobCreate(CreateView):
     template_name = 'jobs/job_create.html'
     model = Job
-    fields = "__all__"
+    form_class = CreateAndUpdateJobForm
 
     def form_valid(self, form):
         form=form.save(commit=False)
@@ -26,17 +28,17 @@ class JobDetail(DetailView):
     context_object_name = 'job'
 
     def get_object(self):
-        id = self.kwargs.get("pk")
-        return  get_object_or_404(Job,id=id)
+        slug = self.kwargs.get("slug")
+        return  get_object_or_404(Job, slug=slug)
 
 
 class JobUpdate(UpdateView):
     model = Job
-    fields = "__all__"
+    form_class = CreateAndUpdateJobForm
 
 
     def get_object(self):
-        job = get_object_or_404(Job, id=self.kwargs.get('pk'))
+        job = get_object_or_404(Job, slug=self.kwargs.get('slug'))
         if(job.user == self.request.user):
             return job
         else:
@@ -52,7 +54,7 @@ class JobDelete(DeleteView):
     success_url = reverse_lazy('alljobs')
 
     def get_object(self):
-        job = get_object_or_404(Job, id=self.kwargs.get('pk'))
+        job = get_object_or_404(Job, slug=self.kwargs.get('slug'))
         if (job.user == self.request.user):
             return job
         else:

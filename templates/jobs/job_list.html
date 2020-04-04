@@ -7,7 +7,7 @@
     <ul>
     {% for job in jobs %}
         <li>
-            <a href={% url 'jobdetail' job.id%}><h3>{{job.job_name}}</h3></a>
+            <a href={% url 'jobdetail' job.slug %}><h3>{{job.job_name}}</h3></a>
             <p>{{job.description|truncatechars:60}}</p>
             <h5>{{job.company_name}}</h5>
             <h5>{{job.email}}</h5>

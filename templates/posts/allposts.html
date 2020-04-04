@@ -25,7 +25,7 @@
                     <div class="w-100"></div>{% endif %}
                 <div class="card mb-3 mr-3" style="width: 16rem;">
                     <div class="card-body">
-                        <a href="{% url 'clickPost' post.id %}">
+                        <a href="{% url 'clickPost' post.slug %}">
                             <h3 class="card-title">Title: {{ post.post_title }}</h3>
                         </a>
                         <p>Body: {{ post.post_body |truncatechars:90}}</p>

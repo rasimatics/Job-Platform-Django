@@ -1,11 +1,11 @@
-from django.urls import path,include
+from django.urls import path, include, re_path
 from . import views
 
 urlpatterns = [
-    path('all-posts/',views.post,name='post'),
+    re_path(r'^all-posts/',views.post,name='post'),
     path('new_post/',views.new_post,name="new_post"),
     path('myposts/',views.myposts,name="myposts"),
-    path('editpost/<int:id>/',views.editpost,name="editpost"),
-    path('delete/<int:id>/',views.deletepost,name="deletepost"),
-    path('post/<int:id>/',views.clickOnPost,name='clickPost'),
+    path('editpost/<slug:slug>/',views.editpost,name="editpost"),
+    path('delete/<slug:slug>/',views.deletepost,name="deletepost"),
+    path('post/<slug:slug>/',views.clickOnPost,name='clickPost'),
 ]

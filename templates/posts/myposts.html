@@ -8,8 +8,8 @@
         <div class="col">
             <h3>Title: {{ post.post_title }}</h3>
             <p>Body: {{ post.post_body }}</p>
-            <a href="{%url 'editpost' post.id %}">Edit post</a>
-            <a href="{%url 'deletepost' post.id %}">Delete post</a>
+            <a href="{%url 'editpost' post.slug %}">Edit post</a>
+            <a href="{%url 'deletepost' post.slug %}">Delete post</a>
         </div>
         {% endfor %}
     </div>

@@ -30,10 +30,10 @@ def myposts(request):
     return render(request, "posts/myposts.html", {"posts": posts})
 
 @login_required(login_url='/login/')
-def editpost(request, id):
+def editpost(request, slug):
     if request.method == 'POST':
         if request.POST['title'] != '' and request.POST['body'] != '':
-            edit_post = Post.objects.get(id=id)
+            edit_post = Post.objects.get(slug=slug)
             edit_post.post_title = request.POST['title']
             edit_post.post_body = request.POST['body']
             edit_post.save()
@@ -41,15 +41,15 @@ def editpost(request, id):
             posts = Post.objects.filter(user_id=user_id)
             return render(request, "posts/myposts.html", {"posts": posts})
     else:
-        post = Post.objects.get(id=id)
+        post = Post.objects.get(slug=slug)
         if(post.user == request.user):
             return render(request, "posts/editpost.html", {'post': post})
         else:
             return HttpResponse("<h2>You cannot edit this post!")
 
 @login_required(login_url='/login/')
-def deletepost(request, id):
-    post = Post.objects.get(id=id)
+def deletepost(request, slug):
+    post = Post.objects.get(slug=slug)
     if(post.user == request.user):
         post.delete()
         user_id = request.user.id
@@ -58,8 +58,8 @@ def deletepost(request, id):
     else:
         return HttpResponse("<h2>You can't delete this post")
 
-def clickOnPost(request, id):
-    selected_post = Post.objects.get(id=id)
+def clickOnPost(request, slug):
+    selected_post = Post.objects.get(slug=slug)
     return render(request, "posts/postDetail.html", {'post': selected_post})
 
 

@@ -48,8 +48,8 @@ def deleteFreelancer(request):
     return redirect('freelancers')
 
 
-def freelancerDetail(request,id):
-    freelancer = NewFreelancer.objects.get(id=id)
+def freelancerDetail(request,slug):
+    freelancer = NewFreelancer.objects.get(slug=slug)
     context = {"freelancer":freelancer}
     return render(request,"freelancers/freelancerDetail.html",context)
 
