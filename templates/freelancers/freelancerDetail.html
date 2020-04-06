@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-    <a class="btn btn-danger" href={%url 'freelancers'%}>Back</a>
+    {% if freelancer == None %}
+    <h3>Not Found</h3>
+    {% else %}
     <h4>{{freelancer.name }}<span> </span>{{freelancer.surname}}</h4>
     <p>{{freelancer.description}}</p>
     <p>{{freelancer.skills}}</p>
     <p>{{freelancer.contact}}</p>
+    {% endif %}
+    <a class="btn btn-danger" href={%url 'freelancers'%}>Back</a>
 {% endblock %}

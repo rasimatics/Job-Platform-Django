@@ -30,7 +30,11 @@ class JobDetail(DetailView):
 
     def get_object(self):
         slug = self.kwargs.get("slug")
-        return  get_object_or_404(Job, slug=slug)
+        try:
+            job  = Job.objects.get(slug=slug)
+        except Job.DoesNotExist:
+            job = None
+        return  job
 
 
 class JobUpdate(UpdateView):

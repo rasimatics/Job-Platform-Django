@@ -1,14 +1,16 @@
-from django.urls import path
+from django.conf.urls import url
+from django.urls import path, re_path
 from .views import Jobs,JobDetail,JobCreate,JobDelete,MyJobs,JobUpdate,SearchResultsJobs
 
-# app_name="jobs"
+
+
 
 urlpatterns = [
-    path('all-jobs/', Jobs.as_view(), name="alljobs"),
-    path('job-create/', JobCreate.as_view(), name="jobcreate"),
-    path('job-detail/<slug:slug>', JobDetail.as_view(),name="jobdetail"),
-    path('job-update/<slug:slug>',JobUpdate.as_view(),name="jobupdate"),
-    path('job-delete/<slug:slug>',JobDelete.as_view(),name="jobdelete"),
-    path('myjobs/',MyJobs.as_view(),name="myjobs"),
-    path('jobsearch/', SearchResultsJobs.as_view(), name='jobsearch')
+    url(r'^jobs/?', Jobs.as_view(), name="alljobs"),
+    url(r'^job-create/?', JobCreate.as_view(), name="jobcreate"),
+    url(r'^job-detail /(?P<slug>[-\w]+)/?', JobDetail.as_view(),name="jobdetail"),
+    url(r'^job-update /(?P<slug>[-\w]+)/?',JobUpdate.as_view(),name="jobupdate"),
+    url(r'^job-delete /(?P<slug>[-\w]+)/?',JobDelete.as_view(),name="jobdelete"),
+    url(r'^myjobs/?',MyJobs.as_view(),name="myjobs"),
+    url(r'^jobsearch/?', SearchResultsJobs.as_view(), name='jobsearch')
 ]

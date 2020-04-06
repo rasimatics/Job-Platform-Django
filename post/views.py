@@ -66,7 +66,10 @@ def deletepost(request, slug):
 
 
 def clickOnPost(request, slug):
-    selected_post = Post.objects.get(slug=slug)
+    try:
+        selected_post = Post.objects.get(slug=slug)
+    except Post.DoesNotExist:
+        selected_post = None
     return render(request, "posts/postDetail.html", {'post': selected_post})
 
 class SearchResultsView(ListView):

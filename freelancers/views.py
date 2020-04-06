@@ -52,7 +52,10 @@ def deleteFreelancer(request):
 
 
 def freelancerDetail(request,slug):
-    freelancer = NewFreelancer.objects.get(slug=slug)
+    try:
+        freelancer = NewFreelancer.objects.get(slug=slug)
+    except NewFreelancer.DoesNotExist:
+        freelancer = None
     context = {"freelancer":freelancer}
     return render(request,"freelancers/freelancerDetail.html",context)
 

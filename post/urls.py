@@ -1,12 +1,14 @@
-from django.urls import path, include, re_path
+from django.conf.urls import url
+from django.urls import path
+
 from . import views
 
 urlpatterns = [
-    re_path(r'^all-posts/',views.post,name='post'),
-    path('new_post/',views.new_post,name="new_post"),
-    path('myposts/',views.myposts,name="myposts"),
-    path('editpost/<slug:slug>/',views.editpost,name="editpost"),
-    path('delete/<slug:slug>/',views.deletepost,name="deletepost"),
-    path('post/<slug:slug>/',views.clickOnPost,name='clickPost'),
-    path('search/',views.SearchResultsView.as_view(),name="search")
+    url(r'^all-posts/',views.post,name='post'),
+    url(r'^new_post/',views.new_post,name="new_post"),
+    url(r'^rmyposts/',views.myposts,name="myposts"),
+    url(r'^editpost /(?P<slug>[-\w]+)/?',views.editpost,name="editpost"),
+    url(r'^deletepost /(?P<slug>[-\w]+)/?',views.deletepost,name="deletepost"),
+    url(r'^post /(?P<slug>[-\w]+)/?',views.clickOnPost,name='clickPost'),
+    url(r'^search/',views.SearchResultsView.as_view(),name="search")
 ]
