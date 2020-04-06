@@ -16,7 +16,7 @@
         <input type="submit" value="Search">
     </form>
     <ul>
-    	{% for freelancer in freelancers %}
+    	{% for freelancer in object_list %}
     	<li>
     		<a href={% url 'detail' freelancer.slug %}><h4>{{freelancer.name }}<span> </span>{{freelancer.surname}}</h4></a>
     		<p>{{freelancer.description |truncatechars:70}}</p>

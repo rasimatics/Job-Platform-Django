@@ -1,4 +1,7 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
+
 from .models import NewFreelancer
 from django.contrib.auth.decorators import login_required
 
@@ -52,4 +55,18 @@ def freelancerDetail(request,slug):
     freelancer = NewFreelancer.objects.get(slug=slug)
     context = {"freelancer":freelancer}
     return render(request,"freelancers/freelancerDetail.html",context)
+
+class SearchResultsFreelancer(ListView):
+    model = NewFreelancer
+    template_name = 'freelancers/search_result.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = NewFreelancer.objects.filter(
+            Q(name__contains=query) |
+            Q(surname__icontains=query) |
+            Q(description__icontains=query) |
+            Q(skills__icontains=query)
+        )
+        return object_list
 

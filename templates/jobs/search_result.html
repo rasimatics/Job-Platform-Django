@@ -1,15 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>All jobs</h1>
-    <a href={% url 'jobcreate' %}>Add new job</a>
-    <a href={% url 'myjobs' %}>My Jobs</a>
-    <hr>
-     <form method="get" action={% url  'jobsearch' %}>
-        <input type="text" name="q">
-        <input type="submit" value="Search">
-    </form>
-    <ul>
-    {% for job in jobs %}
+<h1>Search Results11</h1>
+<ul>
+   {% for job in object_list %}
         <li>
             <a href={% url 'jobdetail' job.slug %}><h3>{{job.job_name}}</h3></a>
             <p>{{job.description|truncatechars:60}}</p>
@@ -19,5 +12,5 @@
             <h5>{{job.finished_date}}</h5>
         </li>
     {% endfor %}
-    </ul>
+</ul>
 {% endblock %}

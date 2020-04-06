@@ -7,4 +7,5 @@ urlpatterns = [
     path('edit/', views.editFreelancer, name="edit"),
     path('delete/', views.deleteFreelancer, name="delete"),
     path('detail/<slug:slug>/',views.freelancerDetail,name="detail"),
+    path('freelancersearch/', views.SearchResultsFreelancer.as_view() , name="freelancersearch")
 ]

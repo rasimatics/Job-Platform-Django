@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
@@ -68,3 +69,16 @@ class MyJobs(ListView):
     def get_queryset(self):
         queryset = Job.objects.filter(user=self.request.user)
         return queryset
+
+class SearchResultsJobs(ListView):
+    model = Job
+    template_name = 'jobs/search_result.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Job.objects.filter(
+            Q(job_name__contains=query) |
+            Q(company_name__icontains=query) |
+            Q(description__icontains=query)
+        )
+        return object_list
